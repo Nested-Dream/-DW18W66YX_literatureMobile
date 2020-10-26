@@ -13,21 +13,29 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar />
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{
-          title: "Login",
-        }}
-      />
-      <Stack.Screen
-        name="Signup"
-        component={Signup}
-        options={{
-          title: "Signup",
-        }}
-      />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            title: "Login",
+          }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{
+            title: "Signup",
+          }}
+        />
+        <Stack.Screen
+          name="Landing"
+          component={BottomTabs}
+          options={{
+            title: "Logout",
+          }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

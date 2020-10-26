@@ -116,14 +116,14 @@ export default function Signup(props) {
               />
               {typingAdress ? typing() : null}
             </View>
-            <View
+            <TouchableOpacity
               style={styles.buttonContainer}
               onPress={() => props.navigation.navigate("Landing")}
             >
               <View style={styles.button}>
-                <Text style={styles.textLogin_Register}>Register</Text>
+                <Text style={styles.textLogin_Register}>Signup</Text>
               </View>
-            </View>
+            </TouchableOpacity>
             <TouchableOpacity
               style={styles.ButtonLogin_Register}
               onPress={() => props.navigation.navigate("Login")}

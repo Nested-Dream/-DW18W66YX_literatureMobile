@@ -1,10 +1,25 @@
 import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
-  container: {
+  titleItem: {
+    fontFamily: "times news roman",
+    fontWeight: "bold",
+    fontSize: 24,
+  },
+  image: {
+    width: 200,
+    height: 270,
+    borderRadius: 10,
+  },
+  containerBottomTabs: {
     flex: 1,
     backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    justifyContent: "center",
   },
   header: {
     flex: 2,

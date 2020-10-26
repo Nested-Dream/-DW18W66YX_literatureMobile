@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { styles } from "../../style/styles";
 const AddLiterature = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.containerBottomTabs}>
       <Text>Add Literature</Text>
     </View>
   );
