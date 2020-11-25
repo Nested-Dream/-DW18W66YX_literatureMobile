@@ -92,3 +92,28 @@ export const TextButtonAuth = styled.Text`
   font-size: 20px;
   color: #f4f3f3;
 `;
+export const ErrorTouch = styled.Text`
+  color: red;
+`;
+
+//Profile
+export const ListContainer = styled.View`
+  width: 70%;
+  background: #272933;
+  border-radius: 10px;
+  padding: 12px 36px;
+`;
+export const ListContent = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+export const ListDetail = styled.View((props) => ({
+  maxWidth: "75%",
+  marginLeft: props.marginL ? props.marginL : "20px",
+}));
+export const ListTittle = styled.Text`
+  color: white;
+`;
+export const ListDesc = styled.Text`
+  color: #808080;
+`;
