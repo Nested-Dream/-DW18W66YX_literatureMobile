@@ -6,7 +6,6 @@ const width = Dimensions.get("screen").width;
 //#f4f3f3 putih
 //#272933 hitam
 //#eb872d orange
-//#eb872d clay pink
 
 export const ContentCenter = styled.View`
   flex: 1;
