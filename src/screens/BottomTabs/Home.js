@@ -7,6 +7,7 @@ import {
   Dimensions,
 } from "react-native";
 import { Header } from "react-native-elements";
+import { ContentCenter } from "../../styles/StyledComponents";
 import { CardLiterature } from "../../components/CardLiterature";
 import { API, urlAsset } from "../../config/Api";
 
@@ -63,7 +64,9 @@ const Home = (props) => {
       />
       <View style={styles.container}>
         {loading ? (
-          <ActivityIndicator size="large" color="#fac224" />
+          <ContentCenter>
+            <ActivityIndicator size="large" color="#fac224" />
+          </ContentCenter>
         ) : (
           <FlatList
             data={literatures.filter((item) => item.status == "Approved")}

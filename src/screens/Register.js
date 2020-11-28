@@ -9,8 +9,8 @@ import { UserContext } from "../context/UserContext";
 import { API, setAuthToken } from "../config/Api";
 import {
   ContainerAuth,
-  ButtonAuth,
-  TextButtonAuth,
+  CustomButton,
+  TextButton,
   KanbanAuth2,
   TextAuth,
   TextInput,
@@ -198,11 +198,11 @@ const Register = (props) => {
               ) : null}
               <FormDivider marginB="40px" />
             </ContainerForm>
-            <ButtonAuth
+            <CustomButton
               onPress={handleSubmit}
               //onPress={() => props.navigation.navigate("Login")}
             >
-              <TextButtonAuth>REGISTER</TextButtonAuth>
+              <TextButton>REGISTER</TextButton>
               {loading ? (
                 <ActivityIndicator size="large" color="#fac224" />
               ) : (
@@ -212,7 +212,7 @@ const Register = (props) => {
                   color="#fac224"
                 />
               )}
-            </ButtonAuth>
+            </CustomButton>
             <Separator height="10px" />
             <ChangeAuthScreen
               onPress={() => props.navigation.navigate("Login")}

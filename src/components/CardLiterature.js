@@ -1,6 +1,5 @@
 import React from "react";
-import { Dimensions } from "react-native";
-import { View, Text } from "react-native";
+import { View, Text, Dimensions } from "react-native";
 import { Card } from "react-native-elements";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -21,7 +20,7 @@ export const CardLiterature = (props) => {
         <Card.Image
           source={{ uri: props.image }}
           style={{
-            height: props.isOne ? width : width / 2,
+            height: width / 2,
             width: "100%",
             borderRadius: 5,
           }}

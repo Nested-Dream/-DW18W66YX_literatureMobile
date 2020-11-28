@@ -6,9 +6,11 @@ import { LogBox } from "react-native";
 import { UserContext } from "./src/context/UserContext";
 import { API, setAuthToken } from "./src/config/Api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import Login from "./src/screens/Login";
 import Register from "./src/screens/Register";
 import BottomTabs from "./src/components/BottomTabs";
+import Detail from "./src/screens/Detail";
 
 LogBox.ignoreLogs(["Setting a timer"]);
 
@@ -42,6 +44,7 @@ const Root = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="BottomTabs" component={BottomTabs} />
+        <Stack.Screen name="Detail" component={Detail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
