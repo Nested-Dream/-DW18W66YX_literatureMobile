@@ -1,20 +1,38 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import {
   FlatList,
   View,
   ActivityIndicator,
   StyleSheet,
   Dimensions,
+  RefreshControl,
+  Text,
+  ScrollView,
 } from "react-native";
 import { Header } from "react-native-elements";
+import { AntDesign } from "@expo/vector-icons";
 import { UserContext } from "../../context/UserContext";
-import { ContentCenter } from "../../styles/StyledComponents";
+import { ContentCenter, Separator } from "../../styles/StyledComponents";
 import { CardLiterature } from "../../components/CardLiterature";
 import { API, urlAsset } from "../../config/Api";
+
+const height = Dimensions.get("screen").height;
 const MyCollection = (props) => {
-  const [literatures, setLiteratures] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [state, dispacth] = useContext(UserContext);
+  const [literatures, setLiteratures] = useState([]);
+  const [relations, setRelations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const wait = (timeout) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, timeout);
+    });
+  };
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   useEffect(() => {
     const loadLiterature = async () => {
       try {
@@ -28,8 +46,22 @@ const MyCollection = (props) => {
       }
     };
     loadLiterature();
-  }, []);
-
+  }, [refreshing]);
+  useEffect(() => {
+    const loadRelation = async () => {
+      try {
+        setLoading(true);
+        const res = await API.get("/relations");
+        setRelations(res.data.data.loadRelations);
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        console.log(err);
+      }
+    };
+    loadRelation();
+  }, [refreshing]);
+  const founded = relations.find((item) => item.UserId === state.user.id);
   const renderItem = ({ item, index }) => {
     return (
       <CardLiterature
@@ -64,7 +96,21 @@ const MyCollection = (props) => {
         }}
       />
       <View style={styles.container}>
-        {loading ? (
+        {founded === undefined ? (
+          <ScrollView
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          >
+            <ContentCenter>
+              <Separator height={`${height / 3}px`} />
+              <AntDesign name="warning" size={58} color="#fac224" />
+              <Text style={{ color: "white", fontSize: 18 }}>
+                You don't have any collection
+              </Text>
+            </ContentCenter>
+          </ScrollView>
+        ) : loading ? (
           <ContentCenter>
             <ActivityIndicator size="large" color="#fac224" />
           </ContentCenter>
@@ -75,6 +121,7 @@ const MyCollection = (props) => {
             renderItem={renderItem}
             refreshing={loading}
             numColumns={2}
+            refreshControl={<RefreshControl onRefresh={onRefresh} />}
           />
         )}
       </View>
